@@ -13,18 +13,20 @@ class ApiMaster extends React.Component {
   render() {
     return (
       <div>
-        <h1>Please Search For Your Business</h1>
-        <input
-          placeholder="business-term"
-          value={this.state.termSearch}
-          onChange={this.setStateTerm}
-        />
-        <input
-          placeholder="business-location"
-          value={this.state.locationSearch}
-          onChange={this.setStateLocation}
-        />
-        <button onClick={this.runApi}>Click Me!</button>
+        <Header />
+        <div className="inputs">
+          <input
+            placeholder="business-term"
+            value={this.state.termSearch}
+            onChange={this.setStateTerm}
+          />
+          <input
+            placeholder="business-location"
+            value={this.state.locationSearch}
+            onChange={this.setStateLocation}
+          />
+          <button onClick={this.runApi}>Click Me!</button>
+        </div>
         <CreateBusinessDivs results={this.state.businesses} />
       </div>
     );
@@ -45,7 +47,6 @@ class ApiMaster extends React.Component {
       })
       .then(
         function(response) {
-          console.log(response);
           this.setState({ businesses: response.data.businesses });
         }.bind(this)
       )
@@ -55,13 +56,30 @@ class ApiMaster extends React.Component {
   }
 }
 
+function Header() {
+  return (
+    <div className="header">
+      <div className="headerText">Please Search For Your Business</div>
+      <div className="produced">produced by MattLomet</div>
+      <div className="yelpImage" />
+    </div>
+  );
+}
+
 function CreateBusinessDivs(props) {
-  console.log(props);
   let businesses = props.results.map(function(business, index) {
+    console.log(business);
     return (
       <div className="mainContainer" key={index}>
-        <div className="businessName">{business.name}</div>
-        <img className="businessPicture" src={business.image_url} />
+        <div className="businessTexts">
+          <div className="businessName text">{business.name}</div>
+          <div className="businessPhone text">{business.display_phone}</div>
+          <div className="businessAdress text">{business.location.address}</div>
+        </div>
+        <div className="images">
+          <img className="businessPicture" src={business.image_url} />
+          <img className="businessRating" src={business.rating_img_url_large} />
+        </div>
       </div>
     );
   });
@@ -71,4 +89,5 @@ function CreateBusinessDivs(props) {
     </div>
   );
 }
+
 ReactDOM.render(<ApiMaster />, document.getElementById("react"));
