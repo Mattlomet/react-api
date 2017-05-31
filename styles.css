@@ -1,0 +1,37 @@
+body{
+  background-color: rgb(145, 14, 152);
+  text-align: center;
+  margin: 20px auto;
+  border: 2px solid black;
+  padding: 20px;
+}
+h1{
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  font-family: 'Bubbler One', sans-serif;
+}
+.backContainer{
+  background-color: white;
+  padding: 20px;
+  border: 2px solid white;
+}
+.mainContainer{
+  margin: 0px auto;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  padding: 20px;
+  display: inline-flex;
+  justify-content: space-around;
+  text-align: center;
+  height: 33%;
+  width: 33%;
+}
+.businessName{
+  color: rgb(187, 66, 87);
+  font-size: 32px;
+  font-family: 'Bubbler One', sans-serif;
+}
+.businessPicture{
+  height: 10vh;
+  width: 20vh;
+}
